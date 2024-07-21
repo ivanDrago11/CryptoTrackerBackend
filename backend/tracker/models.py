@@ -4,10 +4,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    profile_picture = models.ImageField(
-        upload_to='profile_pictures/', blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-    location = models.CharField(max_length=100, blank=True)
 
     # Specify unique related_name attributes to avoid conflicts
     groups = models.ManyToManyField(
@@ -44,7 +40,7 @@ class Cryptocurrency(models.Model):
 
 
 class CryptoList(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     cryptos = models.ManyToManyField(Cryptocurrency, blank=True)
 
