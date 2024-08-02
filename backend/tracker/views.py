@@ -25,14 +25,14 @@ class UserCreateView(generics.CreateAPIView):
 class CryptocurrencyViewSet(viewsets.ModelViewSet):
     queryset = Cryptocurrency.objects.all()
     serializer_class = CryptocurrencySerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 
 class CryptoListViewSet(viewsets.ModelViewSet):
     queryset = CryptoList.objects.all()
     serializer_class = CryptoListSerializer
-    permission_classes = [AllowAny]
-    # lookup_field = 'name'
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'id'
 
     # Custom JWT Token View for login with username or email
 
