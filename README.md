@@ -1,145 +1,87 @@
-Here is a detailed `README.md` file for your crypto tracker project, including setup instructions, project structure, and usage information.
+Crypto Tracker Backend
+This is the backend part of the Crypto Tracker application built with Django and Django REST Framework. The project uses MySQL as the database and JWT for authentication.
 
-```markdown
-# Crypto Tracker
+Features
+Custom user model
+JWT authentication
+CRUD operations for managing users, cryptocurrencies, and crypto lists
+Secure and scalable API design
+Technologies
+Django
+Django REST Framework
+MySQL
+djangorestframework-simplejwt
+Getting Started
+Prerequisites
+Python (version X.X.X)
+MySQL (version X.X.X)
+pip
+Installation
+Clone the repository:
 
-A web application for tracking cryptocurrency prices, built with a Django backend and a React frontend.
+bash
+Copy code
+git clone https://github.com/yourusername/crypto-tracker-backend.git
+cd crypto-tracker-backend
+Create a virtual environment and activate it:
 
-## Table of Contents
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Setup](#setup)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+bash
+Copy code
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+Install dependencies:
 
-## Features
-- User authentication (registration, login, logout)
-- Track prices of various cryptocurrencies
-- User-specific tracking of favorite cryptocurrencies
-- Periodic updates of cryptocurrency prices
-- Responsive design with Material-UI
+bash
+Copy code
+pip install -r requirements.txt
+Setting Up the Database
+Create a MySQL database:
 
-## Tech Stack
-- **Backend:** Django, Django REST framework, Celery, Redis
-- **Frontend:** React, Redux, Axios, Material-UI
-- **Database:** PostgreSQL
-- **Deployment:** Docker, Heroku, Vercel
+sql
+Copy code
+CREATE DATABASE CryptoTrackerDB;
+Update the DATABASES setting in backend/settings.py with your MySQL credentials:
 
-## Project Structure
-```
-crypto-tracker/
-│
-├── backend/
-│   ├── backend/
-│   │   ├── __init__.py
-│   │   ├── asgi.py
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   │   ├── wsgi.py
-│   │   └── ...
-│   ├── tracker/
-│   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── models.py
-│   │   ├── serializers.py
-│   │   ├── tests.py
-│   │   ├── views.py
-│   │   └── ...
-│   └── manage.py
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Dashboard.js
-│   │   │   ├── Login.js
-│   │   │   ├── Register.js
-│   │   │   ├── Profile.js
-│   │   │   └── ...
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   └── ...
-│   ├── package.json
-│   └── ...
-│
-├── .gitignore
-├── docker-compose.yml
-└── README.md
-```
+python
+Copy code
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'CryptoTrackerDB',
+        'USER': 'yourusername',
+        'PASSWORD': 'yourpassword',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+Running Migrations
+Run database migrations:
+bash
+Copy code
+python manage.py makemigrations
+python manage.py migrate
+Running the Server
+Start the development server:
 
-## Setup
+bash
+Copy code
+python manage.py runserver
+Open your browser and navigate to http://localhost:8000.
 
-### Prerequisites
-- Python 3.x
-- Node.js
-- Docker
-- Redis
+Environment Variables
+Create a .env file in the root directory and add any required environment variables:
 
-### Backend Setup
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/crypto-tracker.git
-   cd crypto-tracker
-   ```
+plaintext
+Copy code
+SECRET_KEY=your_secret_key
+DEBUG=True
+Project Structure
+tracker/models.py: Django models
+tracker/serializers.py: Django REST Framework serializers
+tracker/views.py: Django views
+tracker/urls.py: URL configurations
+Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
 
-2. **Setup virtual environment and install dependencies:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
-
-3. **Setup Django project:**
-   ```bash
-   cd backend
-   python manage.py makemigrations
-   python manage.py migrate
-   python manage.py createsuperuser
-   ```
-
-4. **Run the backend server:**
-   ```bash
-   python manage.py runserver
-   ```
-
-### Frontend Setup
-1. **Navigate to the frontend directory:**
-   ```bash
-   cd frontend
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Run the frontend development server:**
-   ```bash
-   npm start
-   ```
-
-### Docker Setup (Optional)
-1. **Build and run the Docker containers:**
-   ```bash
-   docker-compose up --build
-   ```
-
-## Usage
-- Access the Django admin panel at `http://localhost:8000/admin` using the superuser credentials created during setup.
-- Access the React frontend at `http://localhost:3000`.
-
-## Contributing
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a Pull Request.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
-
-This `README.md` file provides comprehensive information about the project, including its features, tech stack, project structure, setup instructions, usage, and contribution guidelines. Feel free to modify it according to your specific requirements.
+License
+This project is licensed under the MIT License.
